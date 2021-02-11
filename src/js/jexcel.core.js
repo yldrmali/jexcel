@@ -6928,7 +6928,9 @@ var jexcel = (function(el, options) {
         if (obj.options.lazyLoading == true) {
             if (jexcel.timeControlLoading == null) {
                 jexcel.timeControlLoading = setTimeout(function() {
-                    if (obj.content.scrollTop + obj.content.clientHeight >= obj.content.scrollHeight) {
+                    //scrollTop+clientHeight is 1-2 pixel less than scrollHeight when scroll reaches to bottom.
+                    //10 px is margin error and should be added.
+                    if (obj.content.scrollTop + obj.content.clientHeight >= obj.content.scrollHeight-10) {
                         if (obj.loadDown()) {
                             if (obj.content.scrollTop + obj.content.clientHeight > obj.content.scrollHeight - 10) {
                                 obj.content.scrollTop = obj.content.scrollTop - obj.content.clientHeight;
